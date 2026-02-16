@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div>
+      <input id="input" type="text" />
+      <button id="btn">Click</button>
+    </div>
+    <div id="root"></div>
+  </body>
+  <script>
+    const root = document.getElementById("root");
+    const btn = document.getElementById("btn");
+    const input = document.getElementById("input");
+
+    btn.addEventListener("click", async () => {
+      const url = input.value.includes("http://")
+        ? input.value
+        : "http://" + input.value;
+        console.log(url);
+        
+      root.textContent = await fetchData(url);
+    });
+
+    async function fetchData(url) {
+      try {
+        const res = await fetch(url);
+        const data = await res.text();
+        return data;
+      } catch (error) {
+        console.log(error);
+        return "Error fetching data";
+      }
+    }
+  </script>
+</html>
