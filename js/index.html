@@ -18,9 +18,9 @@
     const input = document.getElementById("input");
 
     btn.addEventListener("click", async () => {
-      const url = input.value.includes("http://")
+      const url = input.value.includes("https://")
         ? input.value
-        : "http://" + input.value;
+        : "https://" + input.value;
         console.log(url);
         
       root.textContent = await fetchData(url);
